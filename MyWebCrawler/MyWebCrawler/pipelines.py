@@ -12,5 +12,5 @@ class MywebcrawlerPipeline(object):
             for key in item.keys():
                 for idx, i in enumerate(item[key]):
                     item[key][idx] = i.strip().replace('<br>',' - ')
-                item[key] = [item for item in item[key] if item != '']
+                item[key] = [x for x in item[key] if x != '']
         return item
