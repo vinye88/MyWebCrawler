@@ -27,6 +27,7 @@ class GameLoader(ItemLoader):
     tagHTCSup = 'span.platform_img.htcvive'
     tagOcuSup = 'span.platform_img.oculusrift'
     tagVeryPos = 'span.search_review_summary.positive::attr(data-tooltip-html)'
+    tagMixed = 'span.search_review_summary.mixed::attr(data-tooltip-html)'
     tagVeryNeg = 'span.search_review_summary.negative::attr(data-tooltip-html)'
 
     def __init__(self,row):
@@ -43,4 +44,5 @@ class GameLoader(ItemLoader):
         self.add_value('hasHTCSup',['False']) if row.css(self.tagHTCSup).extract_first() is None else self.add_value('hasHTCSup',['True'])
         self.add_value('hasOcuSup',['False']) if row.css(self.tagOcuSup).extract_first() is None else self.add_value('hasOcuSup',['True'])
         if row.css(self.tagVeryPos).extract_first() is not None: self.add_value('reviewSum',row.css(self.tagVeryPos).extract_first())
+        if row.css(self.tagMixed).extract_first() is not None: self.add_value('reviewSum',row.css(self.tagMixed).extract_first())
         if row.css(self.tagVeryNeg).extract_first() is not None: self.add_value('reviewSum',row.css(self.tagVeryPos).extract_first())
